@@ -7,7 +7,7 @@
             width: "auto";
             display: "block";
             margin-top: "1vh";
-            transition: opacity 0.85s ease, transform 0.5s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease;
 
             &.view-mode {
                 width: 100vw;
@@ -17,7 +17,7 @@
                 z-index: 2;
                 left: 50%;
                 transform: translateX(-50%);
-                transition: opacity 0.85s ease, transform 0.85s ease;
+                transition: opacity 0.85s ease, transform 0.5s ease;
             }
         }
         .left {

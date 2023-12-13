@@ -72,14 +72,23 @@ export function Departure({ setTitle }) {
     }
 
     const updateMainImageNumber = (change) => {
-        if (change === "+" && mainImageNumber < departure.paintings.length) {
-            setMainImageNumber(mainImageNumber + 1);
-        } else if (change === "-" && mainImageNumber > 1) {
-            setMainImageNumber(mainImageNumber - 1);
+        console.log("mainImageNumber", mainImageNumber);
+        console.log("otherImages.length", otherImages.length);
+        const totalImages = departure.paintings.length;
+
+        if (change === "+") {
+            const newImageNumber =
+                mainImageNumber >= totalImages ? 1 : mainImageNumber + 1;
+            setMainImageNumber(newImageNumber);
+        } else if (change === "-") {
+            const newImageNumber =
+                mainImageNumber <= 1 ? totalImages : mainImageNumber - 1;
+            setMainImageNumber(newImageNumber);
         }
     };
 
     const handleVisbleMode = () => {
+        console.log("hola");
         setIsVisibleMode(true);
 
         if (timeoutId) {
@@ -140,7 +149,7 @@ export function Departure({ setTitle }) {
                             setViewMode(true);
                             handleVisbleMode();
                         }}
-                        onContextMenu={handleContextMenu}
+                        onContextMenu={handleContextMenu} // Add this line
                     />
                 )}
                 <div
