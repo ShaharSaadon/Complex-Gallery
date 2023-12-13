@@ -1,0 +1,86 @@
+.departure-container {
+    .main-image-container {
+        .departure-background-main {
+            width: 40%;
+            margin: auto;
+            display: block;
+            width: "auto";
+            display: "block";
+            margin-top: "1vh";
+
+            &.view-mode {
+                width: auto;
+                height: 95vh;
+                position: absolute;
+                top: 0;
+                z-index: 10;
+                left: 50%;
+                transform: translateX(-50%);
+                max-width: 80%;
+            }
+        }
+        .left {
+            display: none;
+            &.view-mode {
+                position: absolute;
+                display: block;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 8px;
+                width: 24px;
+            }
+        }
+        .right {
+            display: none;
+            &.view-mode {
+                position: absolute;
+                display: block;
+
+                top: 50%;
+                transform: translateY(-50%);
+                right: 8px;
+                width: 24px;
+            }
+        }
+        .exit {
+            display: none;
+            &.view-mode {
+                position: absolute;
+                display: block;
+                top: 5%;
+                left: 8px;
+                width: 24px;
+            }
+        }
+        .flip-button {
+            display: none;
+
+            &.view-mode {
+                position: absolute;
+                display: block;
+                top: 5%;
+                right: 8px;
+                width: 24px;
+            }
+        }
+    }
+
+    .other-images-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        overflow-x: "auto";
+        &.view-mode {
+            display: none !important;
+        }
+    }
+
+    .departure-background-other {
+        width: 100px; /* Example size for smaller images */
+        height: auto;
+        opacity: 0.5;
+        position: relative;
+    }
+}

@@ -1,0 +1,22 @@
+// SETUP
+
+@import "setup/variables";
+@import "setup/function";
+@import "setup/mixins";
+
+// BASE
+
+@import "basics/base";
+@import "basics/layout";
+
+// COMPONENTS
+
+@import "components/Loader";
+@import "components/AppHeader";
+@import "components/AppFooter";
+
+// Views
+
+@import "views/HomePage";
+@import "views/Painting";
+@import "views/Departure";

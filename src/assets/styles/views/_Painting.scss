@@ -1,0 +1,31 @@
+.code-block-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: em(52px);
+
+  .mode {
+    align-self: center;
+    margin-block: em($xxLarge-space);
+  }
+
+  .instruction {
+    margin-block-end: em($xxLarge-space);
+    span {
+      font-weight: 800;
+      text-decoration: underline;
+    }
+  }
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    margin-block: em(24px);
+  }
+
+  @include mq(mobile-breakpoint) {
+    padding-top: em(100px);
+    .actions {
+      margin-block-start: em(150px);
+    }
+  }
+}

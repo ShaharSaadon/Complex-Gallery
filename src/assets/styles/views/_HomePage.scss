@@ -1,0 +1,84 @@
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 36px;
+    margin: 0 auto;
+    justify-items: center;
+    .departure-card {
+        width: 44vw;
+        height: 44vw;
+        position: relative;
+        color: $dark-color;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .departure-background {
+            width: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                0deg,
+                rgba(255, 255, 255, 0.5) 0%,
+                rgba(255, 255, 255, 0.5) 15%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            .departure-title {
+                position: absolute;
+                bottom: -3px;
+                z-index: 3;
+                display: flex;
+                align-items: center;
+                font-size: 80%;
+                width: 100%;
+                justify-content: center;
+                color: black; /* White text for contrast */
+                // background-color: rgba(
+                //     0,
+                //     0,
+                //     0,
+                //     0.7
+                // ); /* Dark semi-transparent background */
+                padding: 14px; /* Padding around the text */
+            }
+        }
+    }
+}
+
+@include mq(mobile-breakpoint) {
+    .cards-container {
+        .departure-card {
+            width: 30vw;
+            height: 30vw;
+        }
+    }
+}
+@include mq(narrow-breakpoint) {
+    .cards-container {
+        .departure-card {
+            width: 23vw;
+            height: 23vw;
+        }
+    }
+}

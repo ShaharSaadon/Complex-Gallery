@@ -1,0 +1,23 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: $header-size;
+    color: white;
+    .logo {
+        width: $logo-width;
+    }
+
+    .title {
+        font-size: $med-title;
+        text-align: center;
+        color: white;
+    }
+
+    @include mq(mobile-breakpoint) {
+        .title {
+            font-size: $big-title;
+        }
+    }
+}
