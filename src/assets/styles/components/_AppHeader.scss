@@ -10,14 +10,14 @@
     }
 
     .title {
-        font-size: $med-title;
+        font-size: $xLagre-title;
         text-align: center;
         color: white;
     }
 
     @include mq(mobile-breakpoint) {
         .title {
-            font-size: $big-title;
+            font-size: $xLagre-title;
         }
     }
 }

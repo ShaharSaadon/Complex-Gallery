@@ -50,17 +50,17 @@
                 z-index: 3;
                 display: flex;
                 align-items: center;
-                font-size: 80%;
+                // font-size: 80%;
                 width: 100%;
                 justify-content: center;
-                color: black; /* White text for contrast */
+                color: black;
                 // background-color: rgba(
                 //     0,
                 //     0,
                 //     0,
                 //     0.7
-                // ); /* Dark semi-transparent background */
-                padding: 14px; /* Padding around the text */
+                // );
+                padding: 14px 0;
             }
         }
     }

@@ -3,7 +3,6 @@
 }
 
 html {
-    font-family: Roboto, OpenSans, sans-serif;
     font-size: 16px;
     scroll-behavior: smooth;
     direction: ltr;
@@ -14,9 +13,9 @@ body {
     min-height: 100vh;
     background-color: $dark-color;
     color: $light-color;
-    font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-        "Helvetica Neue", sans-serif;
+    font-family: LongChang, Roboto, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;

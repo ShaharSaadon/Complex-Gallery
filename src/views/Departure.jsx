@@ -4,10 +4,9 @@ import { departureService } from "../services/departure.service";
 import { useParams } from "react-router-dom";
 import { Loader } from "../components/Loader";
 
-import leftArrow from "../assets/images/left-arrow.svg";
-import xCircle from "../assets/images/x-circle.svg";
-import circle180 from "../assets/images/180-circle.svg";
-import rightArrow from "../assets/images/right-arrow.svg";
+import leftArrow from "../assets/images/left-arrow.png";
+import xCircle from "../assets/images/close.png";
+import rightArrow from "../assets/images/right-arrow.png";
 import PropTypes from "prop-types";
 
 export function Departure({ setTitle }) {
@@ -21,19 +20,19 @@ export function Departure({ setTitle }) {
     const [otherImages, setOtherImages] = useState([]);
     const [mainImageSrc, setMainImage] = useState([]);
     const [isViewMode, setViewMode] = useState(true);
-    const [is180degMode, setIs180degMode] = useState(false);
+    const [isVisibleMode, setIsVisibleMode] = useState(false);
+    const [timeoutId, setTimeoutId] = useState(null);
+
     useEffect(() => {
         loadDeparture();
     }, [id]);
 
     useEffect(() => {
-        console.log("isviewmode", isViewMode);
         document.title = ` ${departure.name}`;
         const departureKey = `${departure.name
             .replace("Complex ", "")
             .toLowerCase()}`;
         setMainImage(paintingImageMapping[`${departureKey}${mainImageNumber}`]);
-        const mainImageKey = `${departureKey}${mainImageNumber}`;
 
         const calculatedOtherImages = Object.entries(departure.paintings)
             .filter(([key, _]) => key !== (mainImageNumber - 1).toString())
@@ -59,6 +58,7 @@ export function Departure({ setTitle }) {
             });
 
         setOtherImages(calculatedOtherImages);
+        handleVisbleMode();
     }, [departure, mainImageNumber]);
 
     async function loadDeparture() {
@@ -79,27 +79,45 @@ export function Departure({ setTitle }) {
         }
     };
 
+    const handleVisbleMode = () => {
+        setIsVisibleMode(true);
+
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+
+        const newTimeoutId = setTimeout(() => {
+            setIsVisibleMode(false);
+        }, 2000);
+
+        setTimeoutId(newTimeoutId);
+    };
+
     if (!departure.name) return <Loader />;
 
     return (
         <div className={`departure-container`}>
             <div className="main-image-container">
-                <div
+                {/* <div
                     className={
                         isViewMode ? "flip-button view-mode" : "flip-button"
                     }
                     onClick={() => setIs180degMode(true)}
                 >
                     <img src={circle180} alt="" />
-                </div>
+                </div> */}
                 <div
-                    className={isViewMode ? "exit view-mode" : "exit"}
+                    className={`${isViewMode ? "exit view-mode" : "exit"} ${
+                        isVisibleMode ? "visible" : ""
+                    }`}
                     onClick={() => setViewMode(false)}
                 >
                     <img src={xCircle} alt="" />
                 </div>
                 <div
-                    className={isViewMode ? "left view-mode" : "left"}
+                    className={`${isViewMode ? "left view-mode" : "left"} ${
+                        isVisibleMode ? "visible" : ""
+                    }`}
                     onClick={() => updateMainImageNumber("-")}
                     hidden={mainImageNumber === 1}
                 >
@@ -114,11 +132,16 @@ export function Departure({ setTitle }) {
                                 ? "departure-background-main view-mode"
                                 : "departure-background-main"
                         }
-                        onClick={() => setViewMode(true)}
+                        onClick={() => {
+                            setViewMode(true);
+                            handleVisbleMode();
+                        }}
                     />
                 )}
                 <div
-                    className={isViewMode ? "right view-mode" : "right"}
+                    className={`${isViewMode ? "right view-mode" : "right"} ${
+                        isVisibleMode ? "visible" : ""
+                    }`}
                     onClick={() => updateMainImageNumber("+")}
                     hidden={mainImageNumber === otherImages.length + 1}
                 >

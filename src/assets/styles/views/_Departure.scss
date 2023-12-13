@@ -7,61 +7,32 @@
             width: "auto";
             display: "block";
             margin-top: "1vh";
+            transition: opacity 0.85s ease, transform 0.5s ease;
 
             &.view-mode {
-                width: auto;
-                height: 95vh;
+                width: 100vw;
+                height: 100vh;
                 position: absolute;
                 top: 0;
-                z-index: 10;
+                z-index: 2;
                 left: 50%;
                 transform: translateX(-50%);
-                max-width: 80%;
+                transition: opacity 0.85s ease, transform 0.85s ease;
             }
         }
         .left {
-            display: none;
-            &.view-mode {
-                position: absolute;
-                display: block;
-                top: 50%;
-                transform: translateY(-50%);
-                left: 8px;
-                width: 24px;
-            }
+            @include view-mode-button(left);
         }
         .right {
-            display: none;
-            &.view-mode {
-                position: absolute;
-                display: block;
-
-                top: 50%;
-                transform: translateY(-50%);
-                right: 8px;
-                width: 24px;
-            }
+            @include view-mode-button(right);
         }
+
         .exit {
-            display: none;
-            &.view-mode {
-                position: absolute;
-                display: block;
-                top: 5%;
-                left: 8px;
-                width: 24px;
-            }
+            @include view-mode-button(left, 5%, 0);
         }
-        .flip-button {
-            display: none;
 
-            &.view-mode {
-                position: absolute;
-                display: block;
-                top: 5%;
-                right: 8px;
-                width: 24px;
-            }
+        .flip-button {
+            @include view-mode-button(right, 5%, 0);
         }
     }
 
