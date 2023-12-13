@@ -93,6 +93,10 @@ export function Departure({ setTitle }) {
         setTimeoutId(newTimeoutId);
     };
 
+    const handleContextMenu = (event) => {
+        event.preventDefault();
+    };
+
     if (!departure.name) return <Loader />;
 
     return (
@@ -136,6 +140,7 @@ export function Departure({ setTitle }) {
                             setViewMode(true);
                             handleVisbleMode();
                         }}
+                        onContextMenu={handleContextMenu}
                     />
                 )}
                 <div
