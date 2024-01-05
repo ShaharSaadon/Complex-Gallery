@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import { departureService } from "../services/departure.service";
 import { useParams } from "react-router-dom";
 import { Loader } from "../components/Loader";
-
+import { useNavigate } from "react-router-dom";
 import leftArrow from "../assets/images/left-arrow.png";
 import xCircle from "../assets/images/close.png";
 import rightArrow from "../assets/images/right-arrow.png";
+import goBackArrow from "../assets/images/go-back.svg";
 import PropTypes from "prop-types";
 
 export function Departure({ setTitle }) {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [departure, setDeparture] = useState({
         id: "",
@@ -61,6 +63,10 @@ export function Departure({ setTitle }) {
         handleVisbleMode();
     }, [departure, mainImageNumber]);
 
+    const goBack = () => {
+        navigate(-1);
+    };
+
     async function loadDeparture() {
         try {
             const departure = await departureService.getById(id);
@@ -88,7 +94,6 @@ export function Departure({ setTitle }) {
     };
 
     const handleVisbleMode = () => {
-        console.log("hola");
         setIsVisibleMode(true);
 
         if (timeoutId) {
@@ -97,7 +102,7 @@ export function Departure({ setTitle }) {
 
         const newTimeoutId = setTimeout(() => {
             setIsVisibleMode(false);
-        }, 2000);
+        }, 300000);
 
         setTimeoutId(newTimeoutId);
     };
@@ -111,14 +116,16 @@ export function Departure({ setTitle }) {
     return (
         <div className={`departure-container`}>
             <div className="main-image-container">
-                {/* <div
-                    className={
-                        isViewMode ? "flip-button view-mode" : "flip-button"
-                    }
-                    onClick={() => setIs180degMode(true)}
-                >
-                    <img src={circle180} alt="" />
-                </div> */}
+                {!isViewMode?  <div className="back" onClick={goBack}>
+                    <img
+                        src={goBackArrow}
+                        alt="back-arrow"
+                        className="go-back-arrow"
+                    />
+                </div> : ""}
+                
+               
+
                 <div
                     className={`${isViewMode ? "exit view-mode" : "exit"} ${
                         isVisibleMode ? "visible" : ""
@@ -127,6 +134,7 @@ export function Departure({ setTitle }) {
                 >
                     <img src={xCircle} alt="" />
                 </div>
+                
                 <div
                     className={`${isViewMode ? "left view-mode" : "left"} ${
                         isVisibleMode ? "visible" : ""
@@ -149,7 +157,7 @@ export function Departure({ setTitle }) {
                             setViewMode(true);
                             handleVisbleMode();
                         }}
-                        onContextMenu={handleContextMenu} // Add this line
+                        onContextMenu={handleContextMenu}
                     />
                 )}
                 <div

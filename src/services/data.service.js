@@ -40,6 +40,12 @@ import scene4 from "../assets/images/departure/scene/4.png";
 import scene5 from "../assets/images/departure/scene/5.png";
 import scene6 from "../assets/images/departure/scene/6.png";
 import scene7 from "../assets/images/departure/scene/7.png";
+import reality1 from "../assets/images/departure/reality/1.png";
+import reality2 from "../assets/images/departure/reality/2.png";
+import reality3 from "../assets/images/departure/reality/3.png";
+import reality4 from "../assets/images/departure/reality/4.png";
+import reality5 from "../assets/images/departure/reality/5.png";
+import reality6 from "../assets/images/departure/reality/6.png";
 const departureImageMapping = {
     face: face,
     reality: reality,
@@ -47,8 +53,7 @@ const departureImageMapping = {
     nature: nature,
     scene: scene,
     alien: alien,
-};
-
+}
 const paintingImageMapping = {
     face1: face1,
     face2: face2,
@@ -86,6 +91,13 @@ const paintingImageMapping = {
     scene5: scene5,
     scene6: scene6,
     scene7: scene7,
+    reality1: reality1,
+    reality2: reality2,
+    reality3: reality3,
+    reality4: reality4,
+    reality5: reality5,
+    reality6: reality6,
+
 };
 
 export { departureImageMapping, paintingImageMapping };

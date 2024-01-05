@@ -1,5 +1,8 @@
 .departure-container {
+    min-height: 95vh;
+
     .main-image-container {
+    
         .departure-background-main {
             width: 40%;
             margin: auto;
@@ -10,14 +13,18 @@
             transition: opacity 0.5s ease, transform 0.5s ease;
 
             &.view-mode {
-                width: 100vw;
-                height: 100vh;
                 position: absolute;
-                top: 0;
-                z-index: 2;
+                top: 50%;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translate(-50%, -50%);
+                z-index: 2;
                 transition: opacity 0.85s ease, transform 0.5s ease;
+            
+                max-width: 100vw;
+                max-height: 100vh;
+                width: auto;
+                height: auto;
+                object-fit: contain;
             }
         }
         .left {
@@ -29,6 +36,19 @@
 
         .exit {
             @include view-mode-button(left, 5%, 0);
+        }
+
+        .back {
+            .go-back-arrow {
+                position: absolute;
+                background-color: (rgba($color: #ffffff, $alpha: 0.2));
+                border-radius: 50%;
+                width: 32px;
+                left: 8px;
+                $top: 50%;
+                top: 32px;
+                padding: 4px;
+            }
         }
 
         .flip-button {
@@ -49,7 +69,7 @@
     }
 
     .departure-background-other {
-        width: 100px; /* Example size for smaller images */
+        width: 100px;
         height: auto;
         opacity: 0.5;
         position: relative;

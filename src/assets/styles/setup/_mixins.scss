@@ -15,30 +15,31 @@ $breakpoints: (
         @content;
     }
 }
-
 @mixin for-narrow-layout {
-    @media (min-width: calc($mobile-breakpoint + 40px)) {
+    @media (min-width: calc(#{map.get($breakpoints, mobile-breakpoint)} + 40px)) {
         @content;
     }
 }
 
 @mixin for-normal-layout {
-    @media (min-width: calc($narrow-breakpoint + 40px)) {
+    @media (min-width: calc(#{map.get($breakpoints, narrow-breakpoint)} + 40px)) {
         @content;
     }
 }
 
 @mixin for-wide-layout {
-    @media (min-width: calc($normal-breakpoint + 40px)) {
+    @media (min-width: calc(#{map.get($breakpoints, normal-breakpoint)} + 40px)) {
         @content;
     }
 }
+
 
 @mixin view-mode-button(
     $side: left,
     $top: 50%,
     $translateY: -50%,
-    $left-right: 8px
+    $left-right: 8px,
+    $wide-left-right: 30%
 ) {
     display: none;
     &.view-mode {
@@ -47,18 +48,30 @@ $breakpoints: (
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: (rgba($color: #ffffff, $alpha: 0.2));
+            background-color: rgba(#ffffff, 0.2);
             border-radius: 50%;
             padding: 8px;
             top: $top;
             z-index: 15;
             transform: translateY($translateY);
+
             @if $side == left {
                 left: $left-right;
             } @else if $side == right {
                 right: $left-right;
             }
+
             width: 32px;
+
+            // Apply wide layout adjustments
+            @include for-wide-layout {
+                @if $side == left {
+                    left: $wide-left-right;
+                } @else if $side == right {
+                    right: $wide-left-right;
+                }
+            }
         }
     }
 }
+

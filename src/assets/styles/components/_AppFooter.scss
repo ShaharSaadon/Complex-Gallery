@@ -1,6 +1,6 @@
 footer {
     display: flex;
-    position: fixed;
+    // position: fixed;
     align-items: center;
     justify-content: center;
 
@@ -9,6 +9,12 @@ footer {
     width: 100%;
 
     color: white;
-    font-size: 1.3rem;
     font-weight: 900;
+
+    @include mq(narrow-breakpoint) {
+        font-size: 1.5rem;
+
 }
+}
+
+

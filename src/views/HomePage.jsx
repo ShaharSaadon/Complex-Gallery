@@ -24,8 +24,13 @@ export function HomePage({ setTitle }) {
     return (
         <div className="cards-container">
             {Array.isArray(departures) &&
-                departures.map((departure) => (
-                    <div className="departure-card" key={departure._id}>
+                departures.map((departure, index) => (
+                    <div
+                        className={`departure-card ${
+                            index === 2 ? "complex-nature" : ""
+                        }`}
+                        key={departure._id}
+                    >
                         <Link to={`/departure/${departure._id}`}>
                             <img
                                 src={departureImageMapping[departure.picture]}
