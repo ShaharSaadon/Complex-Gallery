@@ -8,6 +8,7 @@ import { AppFooter } from "./components/AppFooter";
 
 function App() {
     const [title, setTitle] = useState("Complex Gallery");
+    const [isBackgroundDark, setIsBackgroundDark] = useState(false);
 
     const handleSetTitle = useCallback(
         (newTitle) => {
@@ -16,8 +17,9 @@ function App() {
         [title]
     );
 
+
     return (
-        <section className="main-container">
+<section className={`main-container ${isBackgroundDark ? 'view-mode-active' : ''}`}>
             <Router>
                 <AppHeader title={title} />
                 <Routes>
@@ -27,7 +29,7 @@ function App() {
                     />
                     <Route
                         path="/departure/:id"
-                        element={<Departure setTitle={handleSetTitle} />}
+                        element={<Departure setTitle={handleSetTitle} setIsBackgroundDark={setIsBackgroundDark} />}
                     />
                 </Routes>
                 <AppFooter />

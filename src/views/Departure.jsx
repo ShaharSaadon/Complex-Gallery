@@ -10,7 +10,7 @@ import rightArrow from "../assets/images/right-arrow.png";
 import goBackArrow from "../assets/images/go-back.svg";
 import PropTypes from "prop-types";
 
-export function Departure({ setTitle }) {
+export function Departure({ setTitle, setIsBackgroundDark  }) {
     const navigate = useNavigate();
     const { id } = useParams();
     const [departure, setDeparture] = useState({
@@ -26,6 +26,7 @@ export function Departure({ setTitle }) {
     const [timeoutId, setTimeoutId] = useState(null);
 
     useEffect(() => {
+        setIsBackgroundDark(true)
         loadDeparture();
     }, [id]);
 
@@ -63,9 +64,6 @@ export function Departure({ setTitle }) {
         handleVisbleMode();
     }, [departure, mainImageNumber]);
 
-    const goBack = () => {
-        navigate(-1);
-    };
 
     async function loadDeparture() {
         try {
@@ -78,8 +76,6 @@ export function Departure({ setTitle }) {
     }
 
     const updateMainImageNumber = (change) => {
-        console.log("mainImageNumber", mainImageNumber);
-        console.log("otherImages.length", otherImages.length);
         const totalImages = departure.paintings.length;
 
         if (change === "+") {
@@ -93,6 +89,11 @@ export function Departure({ setTitle }) {
         }
     };
 
+    const handleExitViewMode = () => {
+        setIsBackgroundDark(false)
+            navigate('/');
+    };
+
     const handleVisbleMode = () => {
         setIsVisibleMode(true);
 
@@ -102,7 +103,7 @@ export function Departure({ setTitle }) {
 
         const newTimeoutId = setTimeout(() => {
             setIsVisibleMode(false);
-        }, 300000);
+        }, 3500);
 
         setTimeoutId(newTimeoutId);
     };
@@ -115,8 +116,10 @@ export function Departure({ setTitle }) {
 
     return (
         <div className={`departure-container`}>
+                    <div className="overlay"></div>
+
             <div className="main-image-container">
-                {!isViewMode?  <div className="back" onClick={goBack}>
+                {!isViewMode?  <div className="back" onClick={handleExitViewMode}>
                     <img
                         src={goBackArrow}
                         alt="back-arrow"
@@ -130,7 +133,7 @@ export function Departure({ setTitle }) {
                     className={`${isViewMode ? "exit view-mode" : "exit"} ${
                         isVisibleMode ? "visible" : ""
                     }`}
-                    onClick={() => setViewMode(false)}
+                    onClick={handleExitViewMode}
                 >
                     <img src={xCircle} alt="" />
                 </div>
@@ -185,4 +188,5 @@ export function Departure({ setTitle }) {
 
 Departure.propTypes = {
     setTitle: PropTypes.func.isRequired,
+    setIsBackgroundDark: PropTypes.func.isRequired,
 };

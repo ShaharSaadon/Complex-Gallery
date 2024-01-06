@@ -1,6 +1,15 @@
 .departure-container {
     min-height: 95vh;
-
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #2a2c2d;
+        z-index: 300; 
+        display: none; 
+    }
     .main-image-container {
     
         .departure-background-main {

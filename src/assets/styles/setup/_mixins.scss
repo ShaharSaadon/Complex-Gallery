@@ -64,7 +64,7 @@ $breakpoints: (
             width: 32px;
 
             // Apply wide layout adjustments
-            @include for-wide-layout {
+            @include for-normal-layout {
                 @if $side == left {
                     left: $wide-left-right;
                 } @else if $side == right {

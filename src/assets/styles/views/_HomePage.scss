@@ -1,7 +1,7 @@
 .cards-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 36px;
+    grid-gap: 36px;
     margin: 0 auto;
     justify-items: center;
     .departure-card {
@@ -16,14 +16,19 @@
 
         &:hover {
             cursor: pointer;
+            .departure-background {
+                transform: scale(1.1); 
+            }
         }
 
         .departure-background {
             width: 100%;
             height: 100%;
             z-index: 1;
-            object-position: top;
-        }
+            object-fit: revert;
+            object-position: center;
+        transition: transform 0.3s ease-in-out; 
+    }
 
         .overlay {
             position: absolute;
@@ -69,16 +74,27 @@
         .departure-card {
             width: 30vw;
             height: 30vw;
+            .departure-background{
+             transform: scale(1); 
+            }
+            .title-container{
+                .departure-title {
+             font-size: 2rem;
+            }
+            }
         }
     }
 }
 @include mq(narrow-breakpoint) {
     .cards-container {
-        grid-row-gap: 0;
-
         .departure-card {
-            width: 100%;
-            height: 44vh;
+            width: 90%;
+            height: 39vh;
+            .title-container{
+                .departure-title {
+             font-size: 2.5rem;
+            }
+            }
         }
     }
 }
